@@ -33,7 +33,7 @@ DEFAULTS = {
     "GCS_BUCKET": "laminas_fechamento",
     "GCS_PATH_PREFIX": "",  # ex: "raw/" (opcional)
     "FILE_PREFIX": "lamina_",  # base filename prefix
-    "FILE_SUFFIX": "_fechamento.xlsx",  # pode deixar vazio: ""
+    "FILE_SUFFIX": "",  # pode deixar vazio: ""
     "SHEET": "0",  # índice (0) ou nome
     "HEADER_ROW": "0",  # linha do header do excel (0 = primeira)
     "DROP_EMPTY_COLUMNS": "true",
@@ -43,7 +43,7 @@ DEFAULTS = {
     "BQ_PROJECT": "",  # vazio => usa GOOGLE_CLOUD_PROJECT
     "BQ_DATASET": "OCUPACAO_REFINED_ZONE",
     "BQ_TABLE": "laminas_fechamento",
-    "LOAD_MODE": "overwrite_partition",  # overwrite_partition | append | overwrite_table
+    "LOAD_MODE": "overwrite_table",  # overwrite_partition | append | overwrite_table
     "DRY_RUN": "false",
     "MAX_FILES": "0",  # 0 = sem limite
     "FAIL_ON_FILE_ERROR": "false",  # true => qualquer erro em arquivo aborta job
