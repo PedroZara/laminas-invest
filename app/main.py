@@ -40,7 +40,7 @@ DEFAULTS = {
     "FORCE_STRING": "true",
     "STAGING_PREFIX": "_staging/laminas_fechamento/",
     "CLEANUP_STAGING": "false",
-    "BQ_PROJECT": "",  # vazio => usa GOOGLE_CLOUD_PROJECT
+    "BQ_PROJECT": "housi-dados",  # vazio => usa GOOGLE_CLOUD_PROJECT
     "BQ_DATASET": "OCUPACAO_REFINED_ZONE",
     "BQ_TABLE": "laminas_fechamento",
     "LOAD_MODE": "overwrite_table",  # overwrite_partition | append | overwrite_table
