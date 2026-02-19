@@ -283,23 +283,31 @@ def drop_empty_columns(df: pd.DataFrame) -> pd.DataFrame:
 def parse_year_month_from_filename(filename: str) -> Tuple[int, int]:
     """
     Espera: lamina_2024_abril_fechamento.xlsx
+    Aceita delimitadores: _, -, .
     """
     name = strip_accents(filename.lower())
 
-    m_year = re.search(r"(19\d{2}|20\d{2})", name)
+    # troca delimitadores por espaço para o \b funcionar corretamente
+    search = re.sub(r"[_\-.]+", " ", name)
+
+    m_year = re.search(r"(19\d{2}|20\d{2})", search)
     if not m_year:
         raise ValueError(f"Não achei ano no filename: {filename}")
     year = int(m_year.group(1))
 
+    # mês por nome (janeiro...dezembro)
     for k, v in PT_MONTHS.items():
-        if re.search(rf"\b{k}\b", name):
+        if re.search(rf"\b{k}\b", search):
             return year, v
 
-    m_num = re.search(r"(?:_|-)(0?[1-9]|1[0-2])(?:_|-)", name)
+    # mês numérico (01..12) como token
+    m_num = re.search(r"(?:^|\s)(0?[1-9]|1[0-2])(?:\s|$)", search)
     if m_num:
         return year, int(m_num.group(1))
 
-    raise ValueError(f"Não achei mês (nome pt ou número) no filename: {filename}")
+    raise ValueError(
+        f"Não achei mês (nome pt ou número) no filename: {filename} | normalized='{search}'"
+    )
 
 
 def read_xlsx_to_df(xlsx_bytes: bytes) -> pd.DataFrame:
