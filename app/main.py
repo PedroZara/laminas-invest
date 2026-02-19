@@ -26,7 +26,7 @@ from google.api_core.exceptions import NotFound, BadRequest
 # --------------------------
 # Configurações (ENV first)
 # --------------------------
-GCS_BUCKET = os.getenv("GCS_BUCKET", "laminas_fechamento")
+GCS_BUCKET = os.getenv("GCS_BUCKET", "laminas_fechamento_invest")
 GCS_PATH_PREFIX = os.getenv("GCS_PATH_PREFIX", "").lstrip("/")  # ex: "raw/"
 
 FILE_PREFIX = os.getenv("FILE_PREFIX", "lamina_")
@@ -40,7 +40,7 @@ DROP_EMPTY_COLUMNS = os.getenv("DROP_EMPTY_COLUMNS", "true").lower() == "true"
 FORCE_STRING = os.getenv("FORCE_STRING", "true").lower() == "true"
 
 STAGING_PREFIX = (
-    os.getenv("STAGING_PREFIX", "_staging/laminas_fechamento/").rstrip("/") + "/"
+    os.getenv("STAGING_PREFIX", "_staging/laminas_fechamento_invest/").rstrip("/") + "/"
 )
 CLEANUP_STAGING = os.getenv("CLEANUP_STAGING", "false").lower() == "true"
 
@@ -49,7 +49,7 @@ BQ_PROJECT = (
     or os.getenv("GOOGLE_CLOUD_PROJECT", "").strip()
 )
 BQ_DATASET = os.getenv("BQ_DATASET", "OCUPACAO_REFINED_ZONE")
-BQ_TABLE = os.getenv("BQ_TABLE", "laminas_fechamento")
+BQ_TABLE = os.getenv("BQ_TABLE", "laminas_fechamento_invest")
 
 LOAD_MODE = (
     os.getenv("LOAD_MODE", "overwrite_partition").strip().lower()
