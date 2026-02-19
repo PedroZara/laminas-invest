@@ -1,0 +1,16 @@
+steps:
+  - name: 'gcr.io/cloud-builders/docker'
+    args: ['build', '-t', 'us-central1-docker.pkg.dev/housi-dados/nps-investidor/nps-investidor:$COMMIT_SHA', '-t', 'us-central1-docker.pkg.dev/housi-dados/nps-investidor/nps-investidor:latest', '.']
+
+  - name: 'gcr.io/cloud-builders/docker'
+    args: ['push', 'us-central1-docker.pkg.dev/housi-dados/nps-investidor/nps-investidor:$COMMIT_SHA']
+
+  - name: 'gcr.io/cloud-builders/docker'
+    args: ['push', 'us-central1-docker.pkg.dev/housi-dados/nps-investidor/nps-investidor:latest']
+
+images:
+  - 'us-central1-docker.pkg.dev/housi-dados/nps-investidor/nps-investidor:$COMMIT_SHA'
+  - 'us-central1-docker.pkg.dev/housi-dados/nps-investidor/nps-investidor:latest'
+
+options:
+  logging: CLOUD_LOGGING_ONLY
