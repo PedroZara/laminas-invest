@@ -362,10 +362,10 @@ def load_parquet_to_bq(source_uri: str, destination: str, write_disposition: str
     job_config = bigquery.LoadJobConfig(
         source_format=bigquery.SourceFormat.PARQUET,
         write_disposition=write_disposition,
-        schema_update_options=[
-            bigquery.SchemaUpdateOption.ALLOW_FIELD_ADDITION,
-            bigquery.SchemaUpdateOption.ALLOW_FIELD_RELAXATION,
-        ],
+        # schema_update_options=[
+        #    bigquery.SchemaUpdateOption.ALLOW_FIELD_ADDITION,
+        #    bigquery.SchemaUpdateOption.ALLOW_FIELD_RELAXATION,
+        # ],
     )
     job = bq.load_table_from_uri(source_uri, destination, job_config=job_config)
     job.result()
