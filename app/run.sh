@@ -1,6 +1,6 @@
 #!/bin/sh
 
-required_env_vars="COOKIE_NPS_INVESTIDOR AUTHORIZATION_NPS_INVESTIDOR"
+required_env_vars=""
 
 for required_env_var in $required_env_vars; do
   if [ -z "$(eval echo \$$required_env_var)" ]; then
